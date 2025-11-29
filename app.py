@@ -74,6 +74,8 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
+    max-width: 330px; 
 }}
 
 .team-card:hover {{
@@ -840,4 +842,5 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
 
