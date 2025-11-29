@@ -33,18 +33,14 @@ def img_to_base64(filename: str) -> str:
 member1_b64 = img_to_base64("member1.png")
 member2_b64 = img_to_base64("member2.png")
 member3_b64 = img_to_base64("member3.png")
-
-# =====================================================================
-# TEAM CARD HTML (FAKE SIDEBAR CONTENT)
-# =====================================================================
 sidebar_html = f"""
+
 <style>
 .team-wrapper {{
     padding: 4px;
     border-radius: 20px;
     background: linear-gradient(135deg, #a5b4fc 0%, #7dd3fc 40%, #fecaca 100%);
 }}
-
 /* soft animated glow behind avatar */
 @keyframes pulseGlow {{
     0%   {{ box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.55); }}
@@ -118,7 +114,6 @@ sidebar_html = f"""
     color: #0f172a;
     margin-bottom: 2px;
 }}
-
 .team-subtitle {{
     text-align: center;
     font-size: 13px;
@@ -169,8 +164,8 @@ sidebar_html = f"""
     font-weight: 600;
     color: #111827;
     line-height: 1.1;
-    white-space: nowrap;
 }}
+
 
 .member-role {{
     font-size: 11px;
@@ -188,7 +183,6 @@ sidebar_html = f"""
     color: #1f2937;
     margin-bottom: 8px;
 }}
-
 .team-note {{
     font-size: 11.5px;
     font-style: italic;
@@ -214,7 +208,8 @@ sidebar_html = f"""
             <img src="data:image/png;base64,{member1_b64}" alt="Member 1">
         </div>
         <div class="member-text">
-            <div class="member-name">ANDLY DANNY</div>
+            <div class="member-name">ANDLY DANNY ‎ ‎ ‎ ‎
+              ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</div>
             <div class="member-role">Member 1</div>
         </div>
     </div>
@@ -250,6 +245,13 @@ sidebar_html = f"""
   </div>
 </div>
 """
+
+
+
+with st.sidebar:
+    components.html(sidebar_html, height=650, scrolling=False)
+
+
 
 # =====================================================================
 # GLOBAL LAYOUT: MAIN CONTENT WIDTH + GLOBAL STYLES
@@ -362,7 +364,7 @@ st.markdown(
             align-items: center !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-            width: 100% !important;
+            width: 115% !important;
             gap: 50px !important;
             margin-top: 10px !important;
         }
@@ -401,22 +403,22 @@ st.markdown(
             border-color: #4a90e2 !important;
             box-shadow: 0 4px 10px rgba(74,144,226,0.35);
         }
-
         :root {
-            color-scheme: light !important;
+            color-scheme: light !important;   /* tell browser: use light colours */
         }
-
-        html,
-        body,
-        .stApp,
-        [data-testid="stAppViewContainer"],
-        [data-testid="stAppViewBlockContainer"],
-        main,
-        .block-container,
-        [data-testid="stHeader"] {
-            background-color: #ffffff !important;
-        }
-
+        
+        /* main containers */
+            html,
+            body,
+            .stApp,
+            [data-testid="stAppViewContainer"],
+            [data-testid="stAppViewBlockContainer"],
+            main,
+            .block-container,
+            [data-testid="stHeader"],
+            section[data-testid="stSidebar"] {
+                background-color: #ffffff !important;
+            }
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
             .header-title {
@@ -461,387 +463,378 @@ lottie_students = load_lottiefile("Group of people communicating.json")
 lottie_thinking = load_lottiefile("Thinking.json")
 
 # =====================================================================
-# MAIN LAYOUT: FAKE SIDEBAR COLUMN + MAIN CONTENT COLUMN
+# APP HEADER (TITLE + SUBTITLE)
 # =====================================================================
-side_col, main_col = st.columns([1, 3])   # adjust 1,3 ratio if you want wider/narrower sidebar
+st.markdown(
+    """
+    <h1 class="fade-title" style="text-align:center; font-weight:700;">
+        STUDENT MENTAL WELLNESS DASHBOARD
+    </h1>
 
-with side_col:
-    components.html(sidebar_html, height=650, scrolling=False)
+    <p class="fade-sub" style="text-align:center; font-size:17px; color:#555;">
+        "Understanding Your Journey to Wellbeing"
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
 
-with main_col:
+# =======================
+# NAV TABS (WITH STATE)
+# =======================
+TAB_OPTIONS = [
+    "HOME",
+    "WHO WE ARE",
+    "THE UNTOLD SIDE",
+    "KNOW YOURSELF",
+]
 
-    # =================================================================
-    # APP HEADER (TITLE + SUBTITLE)
-    # =================================================================
-    st.markdown(
-        """
-        <h1 class="fade-title" style="text-align:center; font-weight:700;">
-            STUDENT MENTAL WELLNESS DASHBOARD
-        </h1>
+# 1) Initialise nav_tabs once
+if "nav_tabs" not in st.session_state:
+    st.session_state["nav_tabs"] = "HOME"
 
-        <p class="fade-sub" style="text-align:center; font-size:17px; color:#555;">
-            "Understanding Your Journey to Wellbeing"
-        </p>
-        """,
-        unsafe_allow_html=True,
+# 2) Handle jump from START EXPLORING button BEFORE radio renders
+if st.session_state.get("go_to_who_we_are"):
+    st.session_state["nav_tabs"] = "WHO WE ARE"
+    st.session_state["go_to_who_we_are"] = False
+
+# 3) Jump form who we are to the untold side
+if st.session_state.get("go_to_untold_side"):
+    st.session_state["nav_tabs"] = "THE UNTOLD SIDE"
+    st.session_state["go_to_untold_side"] = False
+
+# 4) From untold side to know yourself
+if st.session_state.get("go_to_know_yourself"):
+    st.session_state["nav_tabs"] = "KNOW YOURSELF"
+    st.session_state["go_to_know_yourself"] = False  # reset flag
+
+left_gap, tab_col, right_gap = st.columns([1, 6, 1])
+
+with tab_col:
+    st.radio(
+        label="Navigation",
+        options=TAB_OPTIONS,
+        horizontal=True,
+        key="nav_tabs",
+        label_visibility="collapsed",
     )
 
-    # =======================
-    # NAV TABS (WITH STATE)
-    # =======================
-    TAB_OPTIONS = [
-        "HOME",
-        "WHO WE ARE",
-        "THE UNTOLD SIDE",
-        "KNOW YOURSELF",
-    ]
+tab = st.session_state["nav_tabs"]
 
-    # 1) Initialise nav_tabs once
-    if "nav_tabs" not in st.session_state:
-        st.session_state["nav_tabs"] = "HOME"
+# =====================================================================
+# TAB: HOME
+# =====================================================================
+if tab == "HOME":
+    # ------------------ HERO SECTION ------------------
+    centerA, centerB, centerC = st.columns([1, 2, 1])
 
-    # 2) Handle jump from START EXPLORING button BEFORE radio renders
-    if st.session_state.get("go_to_who_we_are"):
-        st.session_state["nav_tabs"] = "WHO WE ARE"
-        st.session_state["go_to_who_we_are"] = False
+    with centerB:
+        st_lottie(lottie_students, height=320, key="main_lottie")
 
-    # 3) Jump form who we are to the untold side
-    if st.session_state.get("go_to_untold_side"):
-        st.session_state["nav_tabs"] = "THE UNTOLD SIDE"
-        st.session_state["go_to_untold_side"] = False
-
-    # 4) From untold side to know yourself
-    if st.session_state.get("go_to_know_yourself"):
-        st.session_state["nav_tabs"] = "KNOW YOURSELF"
-        st.session_state["go_to_know_yourself"] = False  # reset flag
-
-    left_gap, tab_col, right_gap = st.columns([1, 6, 1])
-
-    with tab_col:
-        st.radio(
-            label="Navigation",
-            options=TAB_OPTIONS,
-            horizontal=True,
-            key="nav_tabs",
-            label_visibility="collapsed",
-        )
-
-    tab = st.session_state["nav_tabs"]
-
-    # =================================================================
-    # TAB: HOME
-    # =================================================================
-    if tab == "HOME":
-        # ------------------ HERO SECTION ------------------
-        centerA, centerB, centerC = st.columns([1, 2, 1])
-
-        with centerB:
-            st_lottie(lottie_students, height=320, key="main_lottie")
-
-            st.markdown(
-                """
-                <div style='text-align:center; font-size:20px; font-weight:700; margin-top:10px;'>
-                    WELCOME TO YOUR MENTAL WELLNESS HUB
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-            st.markdown(
-                """
-                <div style='text-align:center; font-size:15px;'>
-                    "Mental health matters. Let's explore together what affects<br>
-                    student wellbeing in Malaysia."
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        st.write("")
         st.markdown(
             """
-            <div class='section-text' style='text-align:center; max-width:750px; margin: 0 auto;'>
-                This dashboard is built to help students pause, reflect, and understand how different parts of life 
-                – academics, money, relationships, sleep, and stress – are linked to mental wellness.  
-                You are not alone, and your feelings are valid.
+            <div style='text-align:center; font-size:20px; font-weight:700; margin-top:10px;'>
+                WELCOME TO YOUR MENTAL WELLNESS HUB
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        # ------------------ VIDEO + INFO ------------------
-        st.write("")
-        st.markdown("### Learn About Mental Health")
+        st.markdown(
+            """
+            <div style='text-align:center; font-size:15px;'>
+                "Mental health matters. Let's explore together what affects<br>
+                student wellbeing in Malaysia."
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        col_video, col_info = st.columns(2)
-
-        with col_video:
-            st.markdown(
-                """
-                <div class="equal-card">
-                  <div class="video-frame">
-                    <iframe
-                      src="https://www.youtube.com/embed/gWs-AswW398"
-                      title="Let's Talk About Mental Health and Wellness"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen>
-                    </iframe>
-                  </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        with col_info:
-            st.markdown(
-                """
-                <div class="equal-card">
-                  <h4>Why this video matters</h4>
-
-                  <p>
-                    This video introduces what mental health really means in everyday life. It reminds us that:
-                  </p>
-
-                  <ul>
-                    <li>Mental health is not just about “being happy” — it includes how we think, feel, and cope.</li>
-                    <li>Anyone can experience stress, anxiety, or low mood, especially during exam season.</li>
-                    <li>Talking to someone and seeking professional help is a strong and healthy step.</li>
-                  </ul>
-
-                  <p style="margin-top: 12px;">
-                    As students, we often carry many invisible pressures — assignments, finances, family expectations,
-                    and our own goals. Watching this video is a small first step to understand that mental health is real,
-                    normal, and something we <b>can</b> take care of.
-                  </p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        # ------------------ WHY IT MATTERS ------------------
-        st.write("")
-        st.write("")
-
-        left_lottie, right_text = st.columns([1, 2])
-
-        with left_lottie:
-            st_lottie(lottie_thinking, height=260, key="thinking_lottie")
-
-        with right_text:
-            st.markdown(
-                "<div class='section-title'>Why Student Mental Health Matters</div>",
-                unsafe_allow_html=True,
-            )
-            st.markdown(
-                """
-                <div class='section-text'>
-                    University life is exciting, but it can also be overwhelming. Many students quietly struggle with:
-                    <ul>
-                        <li>Heavy coursework, deadlines, and exams</li>
-                        <li>Financial worries and part-time work</li>
-                        <li>Family expectations and responsibilities</li>
-                        <li>Loneliness, homesickness, or relationship issues</li>
-                    </ul>
-                    Mental health challenges are common – and they are <b>not</b> a sign of weakness.<br>
-                    This dashboard aims to bring these issues into the open, so we can talk about them
-                    and support one another.
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        st.markdown("---")
-
-        # ------------------ 3 STAT CARDS ------------------
-        st.markdown("")
-
-        col1, col2, col3 = st.columns(3)
-
-        box_style = """
-            padding: 26px;
-            border-radius: 22px;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+    st.write("")
+    st.markdown(
         """
+        <div class='section-text' style='text-align:center; max-width:750px; margin: 0 auto;'>
+            This dashboard is built to help students pause, reflect, and understand how different parts of life 
+            – academics, money, relationships, sleep, and stress – are linked to mental wellness.  
+            You are not alone, and your feelings are valid.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-        inner_card = """
-            background: white;
-            padding: 20px 25px;
-            border-radius: 14px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.10);
-            text-align: center;
-            font-size: 15px;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        """
+    # ------------------ VIDEO + INFO ------------------
+    st.write("")
+    st.markdown("### Learn About Mental Health")
 
-        with col1:
-            st.markdown(
-                f"""
-                <div style="{box_style} background: linear-gradient(135deg, #ff4d4d, #cc0000);">
-                    <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
-                        📊 QUICK STATS
-                    </div>
-                    <div style="height:18px;"></div>
-                    <div style="{inner_card}">
-                        312 students shared their experiences<br>
-                        from different universities and backgrounds.<br><br>
-                        Their responses help us see patterns<br>
-                        in stress, coping, and wellbeing.
-                    </div>
+    col_video, col_info = st.columns(2)
+
+    with col_video:
+        st.markdown(
+            """
+            <div class="equal-card">
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/gWs-AswW398"
+                  title="Let's Talk About Mental Health and Wellness"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col_info:
+        st.markdown(
+            """
+            <div class="equal-card">
+              <h4>Why this video matters</h4>
+
+              <p>
+                This video introduces what mental health really means in everyday life. It reminds us that:
+              </p>
+
+              <ul>
+                <li>Mental health is not just about “being happy” — it includes how we think, feel, and cope.</li>
+                <li>Anyone can experience stress, anxiety, or low mood, especially during exam season.</li>
+                <li>Talking to someone and seeking professional help is a strong and healthy step.</li>
+              </ul>
+
+              <p style="margin-top: 12px;">
+                As students, we often carry many invisible pressures — assignments, finances, family expectations,
+                and our own goals. Watching this video is a small first step to understand that mental health is real,
+                normal, and something we <b>can</b> take care of.
+              </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # ------------------ WHY IT MATTERS ------------------
+    st.write("")
+    st.write("")
+
+    left_lottie, right_text = st.columns([1, 2])
+
+    with left_lottie:
+        st_lottie(lottie_thinking, height=260, key="thinking_lottie")
+
+    with right_text:
+        st.markdown(
+            "<div class='section-title'>Why Student Mental Health Matters</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <div class='section-text'>
+                University life is exciting, but it can also be overwhelming. Many students quietly struggle with:
+                <ul>
+                    <li>Heavy coursework, deadlines, and exams</li>
+                    <li>Financial worries and part-time work</li>
+                    <li>Family expectations and responsibilities</li>
+                    <li>Loneliness, homesickness, or relationship issues</li>
+                </ul>
+                Mental health challenges are common – and they are <b>not</b> a sign of weakness.<br>
+                This dashboard aims to bring these issues into the open, so we can talk about them
+                and support one another.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("---")
+
+    # ------------------ 3 STAT CARDS ------------------
+    st.markdown("")
+
+    col1, col2, col3 = st.columns(3)
+
+    box_style = """
+        padding: 26px;
+        border-radius: 22px;
+        min-height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    """
+
+    inner_card = """
+        background: white;
+        padding: 20px 25px;
+        border-radius: 14px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.10);
+        text-align: center;
+        font-size: 15px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    """
+
+    with col1:
+        st.markdown(
+            f"""
+            <div style="{box_style} background: linear-gradient(135deg, #ff4d4d, #cc0000);">
+                <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
+                    📊 QUICK STATS
                 </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
-        with col2:
-            st.markdown(
-                f"""
-                <div style="{box_style} background: linear-gradient(135deg, #28c76f, #009f4d);">
-                    <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
-                        👥 OUR COMMUNITY
-                    </div>
-                    <div style="height:18px;"></div>
-                    <div style="{inner_card}">
-                        Behind every data point is a real person.
-                        Some are thriving, some are coping,
-                        and some are struggling in silence.
-                        This space reminds you:
-                        you are not alone.
-                    </div>
+                <div style="height:18px;"></div>
+                <div style="{inner_card}">
+                    312 students shared their experiences<br>
+                    from different universities and backgrounds.<br><br>
+                    Their responses help us see patterns<br>
+                    in stress, coping, and wellbeing.
                 </div>
-                """,
-                unsafe_allow_html=True,
-            )
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        with col3:
-            st.markdown(
-                f"""
-                <div style="{box_style} background: linear-gradient(135deg, #3a7bd5, #0052cc);">
-                    <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
-                        🎯 OUR GOAL
-                    </div>
-                    <div style="height:18px;"></div>
-                    <div style="{inner_card} text-align:left;">
-                        • Build awareness about mental wellness<br>
-                        • Encourage honest conversations<br>
-                        • Help students notice their own patterns<br>
-                        • Point towards support and next steps
-                    </div>
+    with col2:
+        st.markdown(
+            f"""
+            <div style="{box_style} background: linear-gradient(135deg, #28c76f, #009f4d);">
+                <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
+                    👥 OUR COMMUNITY
                 </div>
-                """,
-                unsafe_allow_html=True,
+                <div style="height:18px;"></div>
+                <div style="{inner_card}">
+                    Behind every data point is a real person.
+                    Some are thriving, some are coping,
+                    and some are struggling in silence.
+                    This space reminds you:
+                    you are not alone.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col3:
+        st.markdown(
+            f"""
+            <div style="{box_style} background: linear-gradient(135deg, #3a7bd5, #0052cc);">
+                <div style="text-align:center; font-size:20px; font-weight:700; color:white;">
+                    🎯 OUR GOAL
+                </div>
+                <div style="height:18px;"></div>
+                <div style="{inner_card} text-align:left;">
+                    • Build awareness about mental wellness<br>
+                    • Encourage honest conversations<br>
+                    • Help students notice their own patterns<br>
+                    • Point towards support and next steps
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("---")
+
+    # ------------------ CHECK-IN CORNER ------------------
+    st.markdown("### 💬 Check-in Corner")
+
+    col_check1, col_check2 = st.columns(2)
+
+    with col_check1:
+        mood = st.slider(
+            "How are you feeling today on a scale of 1–10?",
+            min_value=1,
+            max_value=10,
+            value=5,
+        )
+
+        if mood <= 3:
+            st.warning(
+                "It sounds like you're having a tough day. It's okay to feel this way. "
+                "Reaching out to someone you trust can really help. 💛"
+            )
+        elif 4 <= mood <= 7:
+            st.info(
+                "You seem to be somewhere in the middle – not great, not terrible. "
+                "Small breaks, movement, or talking to a friend might make today a bit lighter. 💙"
+            )
+        else:
+            st.success(
+                "That's wonderful to hear! Keep doing what supports your mental wellbeing – "
+                "and check in on friends who may need a boost. 🌱"
             )
 
-        st.markdown("---")
+    with col_check2:
+        stress_source = st.selectbox(
+            "What is stressing you the most right now?",
+            [
+                "Assignments & exams",
+                "Time management",
+                "Family expectations",
+                "Money & finances",
+                "Relationships / friendships",
+                "Health & sleep",
+                "I’m not sure",
+            ],
+        )
 
-        # ------------------ CHECK-IN CORNER ------------------
-        st.markdown("### 💬 Check-in Corner")
-
-        col_check1, col_check2 = st.columns(2)
-
-        with col_check1:
-            mood = st.slider(
-                "How are you feeling today on a scale of 1–10?",
-                min_value=1,
-                max_value=10,
-                value=5,
+        if stress_source == "Assignments & exams":
+            st.write(
+                "📚 Try breaking big tasks into smaller parts and study in focused blocks "
+                "(like 25 minutes). It feels less overwhelming."
+            )
+        elif stress_source == "Time management":
+            st.write(
+                "⏰ A simple to-do list or weekly planner can help you see your time clearly "
+                "and reduce mental clutter."
+            )
+        elif stress_source == "Family expectations":
+            st.write(
+                "🏠 You're not alone. Many students feel this. Setting small personal goals "
+                "that matter to you can balance internal and external expectations."
+            )
+        elif stress_source == "Money & finances":
+            st.write(
+                "💸 Consider tracking your spending for a week. Small awareness steps can "
+                "reduce anxiety and help you plan better."
+            )
+        elif stress_source == "Relationships / friendships":
+            st.write(
+                "💌 Healthy connections take time and communication. It’s okay to set "
+                "boundaries and also to ask for support when you need it."
+            )
+        elif stress_source == "Health & sleep":
+            st.write(
+                "😴 Regular sleep, simple movement, and proper meals are basics that strongly "
+                "support mental health. Start with one small habit."
+            )
+        else:
+            st.write(
+                "🌫️ It's okay not to have a clear answer. Sometimes we just feel 'off'. "
+                "Checking in with yourself is already a brave first step."
             )
 
-            if mood <= 3:
-                st.warning(
-                    "It sounds like you're having a tough day. It's okay to feel this way. "
-                    "Reaching out to someone you trust can really help. 💛"
-                )
-            elif 4 <= mood <= 7:
-                st.info(
-                    "You seem to be somewhere in the middle – not great, not terrible. "
-                    "Small breaks, movement, or talking to a friend might make today a bit lighter. 💙"
-                )
-            else:
-                st.success(
-                    "That's wonderful to hear! Keep doing what supports your mental wellbeing – "
-                    "and check in on friends who may need a boost. 🌱"
-                )
+    st.markdown("---")
 
-        with col_check2:
-            stress_source = st.selectbox(
-                "What is stressing you the most right now?",
-                [
-                    "Assignments & exams",
-                    "Time management",
-                    "Family expectations",
-                    "Money & finances",
-                    "Relationships / friendships",
-                    "Health & sleep",
-                    "I’m not sure",
-                ],
-            )
+    # ------------------ START EXPLORING BUTTON ------------------
+    center_btn = st.columns([4, 2, 4])[1]
 
-            if stress_source == "Assignments & exams":
-                st.write(
-                    "📚 Try breaking big tasks into smaller parts and study in focused blocks "
-                    "(like 25 minutes). It feels less overwhelming."
-                )
-            elif stress_source == "Time management":
-                st.write(
-                    "⏰ A simple to-do list or weekly planner can help you see your time clearly "
-                    "and reduce mental clutter."
-                )
-            elif stress_source == "Family expectations":
-                st.write(
-                    "🏠 You're not alone. Many students feel this. Setting small personal goals "
-                    "that matter to you can balance internal and external expectations."
-                )
-            elif stress_source == "Money & finances":
-                st.write(
-                    "💸 Consider tracking your spending for a week. Small awareness steps can "
-                    "reduce anxiety and help you plan better."
-                )
-            elif stress_source == "Relationships / friendships":
-                st.write(
-                    "💌 Healthy connections take time and communication. It’s okay to set "
-                    "boundaries and also to ask for support when you need it."
-                )
-            elif stress_source == "Health & sleep":
-                st.write(
-                    "😴 Regular sleep, simple movement, and proper meals are basics that strongly "
-                    "support mental health. Start with one small habit."
-                )
-            else:
-                st.write(
-                    "🌫️ It's okay not to have a clear answer. Sometimes we just feel 'off'. "
-                    "Checking in with yourself is already a brave first step."
-                )
+    with center_btn:
+        if st.button("START EXPLORING ➜", key="go_explore"):
+            st.session_state["go_to_who_we_are"] = True
+            st.rerun()
+            
+# =====================================================================
+# TAB: WHO WE ARE
+# =====================================================================
+elif tab == "WHO WE ARE":
+    # 1. Render the WHO WE ARE page
+    run_who_we_are_tab()
 
-        st.markdown("---")
+# =====================================================================
+# TAB: THE UNTOLD SIDE  (call external module)
+# =====================================================================
+elif tab == "THE UNTOLD SIDE":
+    render_untold_side()
 
-        # ------------------ START EXPLORING BUTTON ------------------
-        center_btn = st.columns([4, 2, 4])[1]
-
-        with center_btn:
-            if st.button("START EXPLORING ➜", key="go_explore"):
-                st.session_state["go_to_who_we_are"] = True
-                st.rerun()
-
-    # =================================================================
-    # TAB: WHO WE ARE
-    # =================================================================
-    elif tab == "WHO WE ARE":
-        run_who_we_are_tab()
-
-    # =================================================================
-    # TAB: THE UNTOLD SIDE
-    # =================================================================
-    elif tab == "THE UNTOLD SIDE":
-        render_untold_side()
-
-    # =================================================================
-    # TAB: KNOW YOURSELF
-    # =================================================================
-    elif tab == "KNOW YOURSELF":
-        run_mental_wellness_tab()
+# =====================================================================a
+# TAB: KNOW YOURSELF  (call external module)
+# =====================================================================
+elif tab == "KNOW YOURSELF":
+    run_mental_wellness_tab()
