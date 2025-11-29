@@ -73,8 +73,6 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    max-width: 330px;      
-    margin: 0 auto;        
 }}
 
 .team-card:hover {{
@@ -166,7 +164,6 @@ sidebar_html = f"""
     font-weight: 600;
     color: #111827;
     line-height: 1.1;
-    white-space: nowrap;
 }}
 
 
@@ -252,7 +249,7 @@ sidebar_html = f"""
 
 
 with st.sidebar:
-    components.html(sidebar_html, height=650, width=360, scrolling=False)
+    components.html(sidebar_html, height=650, scrolling=False)
 
 
 
@@ -367,7 +364,7 @@ st.markdown(
             align-items: center !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-            width: 100% !important;
+            width: 115% !important;
             gap: 50px !important;
             margin-top: 10px !important;
         }
@@ -420,13 +417,7 @@ st.markdown(
             .block-container,
             [data-testid="stHeader"],
             section[data-testid="stSidebar"] {
-            flex: 0 0 320px !important;
-            max-width: 320px !important;
-            background-color: #ffffff !important;
-            }
-            section[data-testid="stSidebar"] > div:first-child { {
-                width: 320px !important; 
-                min-width: 320px !important;
+                background-color: #ffffff !important;
             }
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
@@ -848,7 +839,3 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
-
-
-
-
