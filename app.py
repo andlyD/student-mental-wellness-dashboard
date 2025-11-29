@@ -441,8 +441,13 @@ st.markdown(
         
         section[data-testid="stSidebar"] > div:first-child {
             width: 300px !important;
-            max-width: 330px !important;
+            max-width: 300px !important;
             min-width: 300px !important;
+        }
+
+        /* Hide the sidebar collapse/expand button */
+        [data-testid="collapsedControl"] {
+            display: none !important;
         }
 
         button[kind="secondary"] {
@@ -849,3 +854,4 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
