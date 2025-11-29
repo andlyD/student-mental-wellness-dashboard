@@ -417,21 +417,8 @@ st.markdown(
             .block-container,
             [data-testid="stHeader"],
             section[data-testid="stSidebar"] {
-                width: 300px !important;
-                min-width: 300px !important;
-                max-width: 300px !important;
-                flex: 0 0 300px !important;
                 background-color: #ffffff !important;
-                padding: 0 !important;
             }
-
-            [data-testid="stSidebarResizer"] {
-            display: none !important;
-            width: 0 !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
-
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
             .header-title {
@@ -832,7 +819,8 @@ if tab == "HOME":
         if st.button("START EXPLORING ➜", key="go_explore"):
             st.session_state["go_to_who_we_are"] = True
             st.rerun()
-            
+
+
 # =====================================================================
 # TAB: WHO WE ARE
 # =====================================================================
