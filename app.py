@@ -73,7 +73,7 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    max-width: 360px;      
+    max-width: 500px;      
     margin: 0 auto;        
 }}
 
@@ -842,3 +842,4 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
