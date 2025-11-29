@@ -1,2 +1,142 @@
-# student-mental-wellness-dashboard
-This project is an interactive Streamlit dashboard that analyzes student mental wellness, visualizes depression–anxiety patterns, and predicts wellness levels using machine learning. It also includes a personalized self-assessment to help users understand their mental health status.
+<p align="center">
+  <img src="https://github.com/your-username/your-repo-name/blob/main/assets/banner.png" alt="Campus Care Banner" width="100%">
+</p>
+
+<h1 align="center">🧠 Campus Care — Student Mental Wellness Dashboard</h1>
+<p align="center"><i>A data-driven Streamlit application for awareness, reflection, and personalised wellness insights.</i></p>
+
+<p align="center">
+  <!-- Shields.io Badges -->
+  <img src="https://img.shields.io/badge/Framework-Streamlit-ff4b4b?style=flat&logo=streamlit&logoColor=white">
+  <img src="https://img.shields.io/badge/Language-Python%203.9+-3776AB?style=flat&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/Analytics-Plotly-3f4f75?style=flat&logo=plotly&logoColor=white">
+  <img src="https://img.shields.io/badge/UI-Lottie-1ABC9C?style=flat&logo=lottie&logoColor=white">
+  <img src="https://img.shields.io/badge/Status-Academic%20Project-blue?style=flat">
+</p>
+
+---
+
+## 🌟 Overview  
+**Campus Care** is a student-centered mental wellness dashboard designed to help university students reflect on their wellbeing, understand stress factors, and receive personalised insights through self-assessment and analytics.
+
+This dashboard blends:
+- Beautiful **magazine-style analytics**  
+- A guided **7-item self-check**  
+- Smart **risk-aware branching**  
+- **Cluster-based insights**  
+- **Micro-modules** and wellness reflections  
+- Progress dashboards and achievement badges  
+
+All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
+
+---
+
+## 🖼️ Project Banner  
+*(Replace this with your own banner if you like)*  
+<p align="center">
+  <img src="https://via.placeholder.com/1200x350/4a90e2/FFFFFF?text=Campus+Care+Dashboard+Banner" width="100%">
+</p>
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page  
+<p align="center">
+  <img src="assets/screenshots/home.png" width="80%">
+</p>
+
+### 👥 Who We Are — Descriptive Analytics  
+<p align="center">
+  <img src="assets/screenshots/who_we_are.png" width="80%">
+</p>
+
+### 🔎 The Untold Side — Factors & Correlations  
+<p align="center">
+  <img src="assets/screenshots/untold_side.png" width="80%">
+</p>
+
+### 🧪 Know Yourself — Self-Check & Results  
+<p align="center">
+  <img src="assets/screenshots/know_yourself.png" width="80%">
+</p>
+
+> 📌 *Replace the placeholder paths with your actual screenshot directories.*
+
+---
+
+## 🚀 Live UX Highlights  
+- **Guided 7-question** SWEMWBS-inspired wellbeing check  
+- **Smart branching** into Low-Risk/High-Risk pathways  
+- **Cluster assignment** for moderate/severe users  
+- **Radar insights** for personalised wellbeing drivers  
+- **Micro-modules** with journaling prompts  
+- **Achievement badges** + recent visits dashboard  
+
+---
+
+## 🗂️ Main Features
+
+### 🔐 Authentication (Future Ready)
+- Secure login structure using bcrypt hashing
+
+### 🧪 Self-Assessment  
+- 7 sliders using SWEMWBS logic  
+- Total score → pathway decision  
+- Gauge bars, factor ranking, visual breakdowns  
+
+### 📊 Data Analytics  
+- 20+ factors analysed across stress, sleep, academics, finances  
+- Correlation heatmaps  
+- Racing bar "Top 5 factors"  
+- 3D stress landscape visualisation  
+
+### 🛣️ Guided Pathways  
+- **Low-risk:** Awareness modules, reflections, mini-habits  
+- **High-risk:** Deep-dive factors + ML-inspired scoring  
+
+### 🧭 Dashboard  
+- Wellness tracking  
+- Behaviour badges  
+- Recent cluster activities  
+- Reflection notes  
+
+---
+
+## 🧩 Project Structure  
+📁 project/
+│── app.py
+│── tabs/
+│ ├── who_we_are.py
+│ ├── untold_side_page.py
+│ └── know_yourself.py
+│── assets/
+│ ├── data/
+│ ├── animations/
+│ ├── img/
+│ ├── screenshots/
+
+---
+
+## 🛠️ Tech Stack  
+- **Python 3.9+**  
+- **Streamlit** — interactive web app  
+- **Plotly** — advanced visualisations  
+- **Pandas/Numpy** — data engineering  
+- **SciPy** — KDE density  
+- **Lottie** — animated illustrations  
+- **Custom CSS** — modern UI  
+
+---
+
+🧑‍💻 Team
+
+Developed by:
+
+Andly Danny Anafiah
+Bayu Fatwa Negara bin Alias
+Muhammad Roslan bin Abbas
+
+📄 License
+
+This dashboard is developed for educational and academic purposes.
