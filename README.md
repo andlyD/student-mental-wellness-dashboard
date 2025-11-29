@@ -51,7 +51,7 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ---
 
 ## 🚀 Live UX Highlights  
-- **Guided 7-question** SWEMWBS-inspired wellbeing check  
+- **Guided 10-question** mental wellness assessment  
 - **Smart branching** into Low-Risk/High-Risk pathways  
 - **Cluster assignment** for moderate/severe users  
 - **Radar insights** for personalised wellbeing drivers  
@@ -61,9 +61,6 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ---
 
 ## 🗂️ Main Features
-
-### 🔐 Authentication (Future Ready)
-- Secure login structure using bcrypt hashing
 
 ### 🧪 Self-Assessment  
 - 7 sliders using SWEMWBS logic  
@@ -118,14 +115,13 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 
 Developed by:
 
-Andly Danny Anafiah
-Bayu Fatwa Negara bin Alias
-Muhammad Roslan bin Abbas
-
-📄 License
+- **Andly Danny Anafiah**  
+- **Bayu Fatwa Negara bin Alias**  
+- **Muhammad Roslan bin Abbas**  
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
