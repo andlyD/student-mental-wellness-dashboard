@@ -73,7 +73,7 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    max-width: 3300px;      
+    max-width: 330px;      
     margin: 0 auto;        
 }}
 
@@ -367,7 +367,7 @@ st.markdown(
             align-items: center !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-            width: 115% !important;
+            width: 100% !important;
             gap: 50px !important;
             margin-top: 10px !important;
         }
@@ -420,13 +420,13 @@ st.markdown(
             .block-container,
             [data-testid="stHeader"],
             section[data-testid="stSidebar"] {
-            flex: 0 0 360px !important;
-            max-width: 360px !important;
+            flex: 0 0 320px !important;
+            max-width: 320px !important;
             background-color: #ffffff !important;
             }
             section[data-testid="stSidebar"] > div:first-child { {
-                width: 3800px !important; 
-                min-width: 360px !important;
+                width: 320px !important; 
+                min-width: 320px !important;
             }
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
@@ -848,6 +848,7 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
 
 
 
