@@ -851,4 +851,3 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
-
