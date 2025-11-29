@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/your-username/your-repo-name/blob/main/assets/banner.png" alt="Campus Care Banner" width="100%">
+  <img src="https://student-wellness-dashboard.streamlit.app/" alt="Campus Care Banner" width="100%">
 </p>
 
 <h1 align="center">🧠 Campus Care — Student Mental Wellness Dashboard</h1>
@@ -138,5 +138,6 @@ Bayu Fatwa Negara bin Alias
 Muhammad Roslan bin Abbas
 
 📄 License
+
 
 This dashboard is developed for educational and academic purposes.
