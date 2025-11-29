@@ -39,6 +39,7 @@ sidebar_html = f"""
 .team-wrapper {{
     padding: 4px;
     border-radius: 20px;
+    max-width: 400px;
     background: linear-gradient(135deg, #a5b4fc 0%, #7dd3fc 40%, #fecaca 100%);
 }}
 /* soft animated glow behind avatar */
@@ -209,7 +210,7 @@ sidebar_html = f"""
             <img src="data:image/png;base64,{member1_b64}" alt="Member 1">
         </div>
         <div class="member-text">
-            <div class="member-name">ANDLY DANNY<‎</div>
+            <div class="member-name">ANDLY DANNY‎</div>
             <div class="member-role">Member 1</div>
         </div>
     </div>
