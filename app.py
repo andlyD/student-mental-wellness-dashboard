@@ -410,37 +410,43 @@ st.markdown(
             color-scheme: light !important;   /* tell browser: use light colours */
         }
         
-        /* main containers */
-            html,
-            body,
-            .stApp,
-            [data-testid="stAppViewContainer"],
-            [data-testid="stAppViewBlockContainer"],
-            main,
-            .block-container,
-            [data-testid="stHeader"],
-            section[data-testid="stSidebar"] {
-                width: 300px !important;
-                min-width: 300px !important;
-                max-width: 300px !important;
-                flex-shrink: 0 !important;
-                background-color: #ffffff !important;
-            }
+        /* make main app background white (but don't touch widths) */
+        html,
+        body,
+        .stApp,
+        [data-testid="stAppViewContainer"],
+        [data-testid="stAppViewBlockContainer"],
+        main,
+        .block-container,
+        [data-testid="stHeader"] {
+            background-color: #ffffff !important;
+        }
 
-            section[data-testid="stSidebar"] > div:first-child {
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-            
-            /* Hide the grey draggable resizer bar */
-            [data-testid="stSidebarResizer"] {
-                display: none !important;
-            }
-            
-            [data-testid="collapsedControl"] {
-                display: none !important;
-            }
-            
+        /* ✅ SIDEBAR: lock width to 300px and stop resizing */
+        section[data-testid="stSidebar"] {
+            width: 300px !important;
+            min-width: 300px !important;
+            max-width: 300px !important;
+            flex-shrink: 0 !important;
+            background-color: #ffffff !important;
+        }
+
+        /* inner sidebar container fills the sidebar */
+        section[data-testid="stSidebar"] > div:first-child {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* Hide the grey draggable resizer bar */
+        [data-testid="stSidebarResizer"] {
+            display: none !important;
+        }
+
+        /* Hide the sidebar collapse/expand button */
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+        
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
             .header-title {
@@ -861,5 +867,6 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
 
 
