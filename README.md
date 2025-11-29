@@ -29,23 +29,14 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 
 ---
 
-## 🖼️ Project Banner  
-<p align="center">
-  <img width="1116" height="872" alt="image" src="https://github.com/user-attachments/assets/9c1e9a7c-8012-420c-bf00-5833be690eb7" />
-</p>
-
----
-
-## 📸 Screenshots
-
 ### 🏠 Home Page  
 <p align="center">
-  <img src="assets/screenshots/home.png" width="80%">
+  <img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/11972543-150a-46e7-ab00-653a1425beeb" />
 </p>
 
 ### 👥 Who We Are — Descriptive Analytics  
 <p align="center">
-  <img src="assets/screenshots/who_we_are.png" width="80%">
+<img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/8cb65500-e16b-421d-a54d-814612f07faf" />
 </p>
 
 ### 🔎 The Untold Side — Factors & Correlations  
@@ -138,5 +129,6 @@ Muhammad Roslan bin Abbas
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
