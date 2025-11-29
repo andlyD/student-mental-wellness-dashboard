@@ -73,7 +73,7 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    max-width: 800px;      
+    max-width: 3300px;      
     margin: 0 auto;        
 }}
 
@@ -252,7 +252,7 @@ sidebar_html = f"""
 
 
 with st.sidebar:
-    components.html(sidebar_html, height=650, scrolling=False)
+    components.html(sidebar_html, height=650, width=360, scrolling=False)
 
 
 
@@ -420,7 +420,13 @@ st.markdown(
             .block-container,
             [data-testid="stHeader"],
             section[data-testid="stSidebar"] {
-                background-color: #ffffff !important;
+            flex: 0 0 360px !important;
+            max-width: 360px !important;
+            background-color: #ffffff !important;
+            }
+            section[data-testid="stSidebar"] > div:first-child { {
+                width: 3800px !important; 
+                min-width: 360px !important;
             }
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
@@ -842,5 +848,6 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
 
 
