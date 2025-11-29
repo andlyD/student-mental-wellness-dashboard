@@ -40,7 +40,7 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 
 ### 🔎 The Untold Side — Diagnostic Analytics
 <p align="center">
-  <img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/d1e16604-d909-4238-941b-f1320d8bc588" />
+  <img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/58b68fe2-b9ee-4b9a-8426-b57ac798dd8a" />
 </p>
 
 ### 🧪 Know Yourself — Predictive & Prescriptive analytics
@@ -126,6 +126,7 @@ Muhammad Roslan bin Abbas
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
