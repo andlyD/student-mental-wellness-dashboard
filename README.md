@@ -86,23 +86,23 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ---
 
 ## 🧩 Project Structure  
+```text
 📁 project/
-│── app.py
+│── 📄 app.py
 │
-│── tabs/
-│   ├── who_we_are.py
-│   ├── untold_side_page.py
-│   └── know_yourself.py
+│── 📂 tabs/
+│   ├── 📄 who_we_are.py
+│   ├── 📄 untold_side_page.py
+│   └── 📄 know_yourself.py
 │
-│── assets/
-│   ├── data/
-│   ├── animations/
-│   ├── img/
-│   └── screenshots/
+│── 📂 assets/
+│   ├── 📂 data/
+│   ├── 📂 animations/
+│   ├── 📂 img/
+│   └── 📂 screenshots/
 │
-└── README.md
-
-
+└── 📄 README.md
+```
 ---
 
 ## 🛠️ Tech Stack  
@@ -126,6 +126,7 @@ Developed by:
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
