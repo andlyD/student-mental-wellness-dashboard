@@ -164,6 +164,7 @@ sidebar_html = f"""
     font-weight: 600;
     color: #111827;
     line-height: 1.1;
+    white-space: nowrap;
 }}
 
 
@@ -208,8 +209,7 @@ sidebar_html = f"""
             <img src="data:image/png;base64,{member1_b64}" alt="Member 1">
         </div>
         <div class="member-text">
-            <div class="member-name">ANDLY DANNY ‎ ‎ ‎ ‎
-              ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</div>
+            <div class="member-name">ANDLY DANNY<‎</div>
             <div class="member-role">Member 1</div>
         </div>
     </div>
@@ -839,3 +839,4 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
