@@ -88,15 +88,20 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ## 🧩 Project Structure  
 📁 project/
 │── app.py
+│
 │── tabs/
-│ ├── who_we_are.py
-│ ├── untold_side_page.py
-│ └── know_yourself.py
+│   ├── who_we_are.py
+│   ├── untold_side_page.py
+│   └── know_yourself.py
+│
 │── assets/
-│ ├── data/
-│ ├── animations/
-│ ├── img/
-│ ├── screenshots/
+│   ├── data/
+│   ├── animations/
+│   ├── img/
+│   └── screenshots/
+│
+└── README.md
+
 
 ---
 
@@ -121,6 +126,7 @@ Developed by:
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
