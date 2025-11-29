@@ -88,20 +88,29 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ## 🧩 Project Structure  
 ```text
 📁 project/
+│
 │── 📄 app.py
+│
+│── 📂 assets/
+│   ├── 📂 data/
+│   ├── 📂 animations/
+│   ├── 📂 img/
+│   └── 📂 video/
+│
+│── 📂 components/
+│   └── 📄 home_lottie
 │
 │── 📂 tabs/
 │   ├── 📄 who_we_are.py
 │   ├── 📄 untold_side_page.py
 │   └── 📄 know_yourself.py
 │
-│── 📂 assets/
-│   ├── 📂 data/
-│   ├── 📂 animations/
-│   ├── 📂 img/
-│   └── 📂 screenshots/
+│── 📂 .streamlit/
+│   └── 📄 config.toml
 │
 └── 📄 README.md
+│
+└──📄 requirements.txt
 ```
 ---
 
@@ -126,6 +135,7 @@ Developed by:
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
