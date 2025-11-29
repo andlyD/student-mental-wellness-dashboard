@@ -417,8 +417,21 @@ st.markdown(
             .block-container,
             [data-testid="stHeader"],
             section[data-testid="stSidebar"] {
+                width: 300px !important;
+                min-width: 300px !important;
+                max-width: 300px !important;
+                flex: 0 0 300px !important;
                 background-color: #ffffff !important;
+                padding: 0 !important;
             }
+
+            [data-testid="stSidebarResizer"] {
+            display: none !important;
+            width: 0 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
             .header-title {
@@ -838,3 +851,4 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
+
