@@ -33,14 +33,15 @@ def img_to_base64(filename: str) -> str:
 member1_b64 = img_to_base64("member1.png")
 member2_b64 = img_to_base64("member2.png")
 member3_b64 = img_to_base64("member3.png")
-sidebar_html = f"""
 
+sidebar_html = f"""
 <style>
 .team-wrapper {{
     padding: 4px;
     border-radius: 20px;
     background: linear-gradient(135deg, #a5b4fc 0%, #7dd3fc 40%, #fecaca 100%);
 }}
+
 /* soft animated glow behind avatar */
 @keyframes pulseGlow {{
     0%   {{ box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.55); }}
@@ -114,6 +115,7 @@ sidebar_html = f"""
     color: #0f172a;
     margin-bottom: 2px;
 }}
+
 .team-subtitle {{
     text-align: center;
     font-size: 13px;
@@ -164,8 +166,8 @@ sidebar_html = f"""
     font-weight: 600;
     color: #111827;
     line-height: 1.1;
+    white-space: nowrap;    /* ✅ keep name in one line, no weird spacing */
 }}
-
 
 .member-role {{
     font-size: 11px;
@@ -183,6 +185,7 @@ sidebar_html = f"""
     color: #1f2937;
     margin-bottom: 8px;
 }}
+
 .team-note {{
     font-size: 11.5px;
     font-style: italic;
@@ -208,8 +211,7 @@ sidebar_html = f"""
             <img src="data:image/png;base64,{member1_b64}" alt="Member 1">
         </div>
         <div class="member-text">
-            <div class="member-name">ANDLY DANNY ‎ ‎ ‎ ‎
-              ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</div>
+            <div class="member-name">ANDLY DANNY</div>
             <div class="member-role">Member 1</div>
         </div>
     </div>
@@ -246,12 +248,8 @@ sidebar_html = f"""
 </div>
 """
 
-
-
 with st.sidebar:
     components.html(sidebar_html, height=650, scrolling=False)
-
-
 
 # =====================================================================
 # GLOBAL LAYOUT: MAIN CONTENT WIDTH + GLOBAL STYLES
@@ -364,7 +362,7 @@ st.markdown(
             align-items: center !important;
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-            width: 115% !important;
+            width: 100% !important;
             gap: 50px !important;
             margin-top: 10px !important;
         }
@@ -403,22 +401,31 @@ st.markdown(
             border-color: #4a90e2 !important;
             box-shadow: 0 4px 10px rgba(74,144,226,0.35);
         }
+
         :root {
             color-scheme: light !important;   /* tell browser: use light colours */
         }
-        
-        /* main containers */
-            html,
-            body,
-            .stApp,
-            [data-testid="stAppViewContainer"],
-            [data-testid="stAppViewBlockContainer"],
-            main,
-            .block-container,
-            [data-testid="stHeader"],
-            section[data-testid="stSidebar"] {
-                background-color: #ffffff !important;
-            }
+
+        /* make background white but DO NOT squeeze layout */
+        html,
+        body,
+        .stApp,
+        [data-testid="stAppViewContainer"],
+        [data-testid="stAppViewBlockContainer"],
+        main,
+        .block-container,
+        [data-testid="stHeader"],
+        section[data-testid="stSidebar"] {
+            background-color: #ffffff !important;
+        }
+
+        /* ✅ sidebar width fixed to 300px */
+        section[data-testid="stSidebar"] > div:first-child {
+            width: 300px !important;
+            max-width: 300px !important;
+            min-width: 300px !important;
+        }
+
         /* SMALLER SCREENS */
         @media (max-width: 900px) {
             .header-title {
@@ -819,7 +826,6 @@ if tab == "HOME":
         if st.button("START EXPLORING ➜", key="go_explore"):
             st.session_state["go_to_who_we_are"] = True
             st.rerun()
-
 
 # =====================================================================
 # TAB: WHO WE ARE
