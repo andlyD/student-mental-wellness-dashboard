@@ -39,7 +39,6 @@ sidebar_html = f"""
 .team-wrapper {{
     padding: 4px;
     border-radius: 20px;
-    max-width: 400px;
     background: linear-gradient(135deg, #a5b4fc 0%, #7dd3fc 40%, #fecaca 100%);
 }}
 /* soft animated glow behind avatar */
@@ -74,8 +73,8 @@ sidebar_html = f"""
     overflow: hidden;
     transform: translateY(0px);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    width: 100%;
-    max-width: 330px; 
+    max-width: 360px;      
+    margin: 0 auto;        
 }}
 
 .team-card:hover {{
@@ -212,7 +211,8 @@ sidebar_html = f"""
             <img src="data:image/png;base64,{member1_b64}" alt="Member 1">
         </div>
         <div class="member-text">
-            <div class="member-name">ANDLY DANNY‎</div>
+            <div class="member-name">ANDLY DANNY ‎ ‎ ‎ ‎
+              ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎</div>
             <div class="member-role">Member 1</div>
         </div>
     </div>
@@ -842,5 +842,3 @@ elif tab == "THE UNTOLD SIDE":
 # =====================================================================
 elif tab == "KNOW YOURSELF":
     run_mental_wellness_tab()
-
-
