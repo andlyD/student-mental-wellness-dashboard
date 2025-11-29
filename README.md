@@ -1,4 +1,4 @@
-<p align="center">
+<img width="799" height="814" alt="image" src="https://github.com/user-attachments/assets/e5e7fd55-aefe-432b-a11e-e809ff9b26b2" /><p align="center">
 </p>
 <h1 align="center">🧠 Student Mental Wellness Dashboard</h1>
 <p align="center"><i>A data-driven Streamlit application for awareness, reflection, and personalised wellness insights.</i></p>
@@ -36,20 +36,18 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 
 ### 👥 Who We Are — Descriptive Analytics  
 <p align="center">
-<img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/8cb65500-e16b-421d-a54d-814612f07faf" />
+  <img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/8cb65500-e16b-421d-a54d-814612f07faf" />
 </p>
 
-### 🔎 The Untold Side — Factors & Correlations  
+### 🔎 The Untold Side — Diagnostic Analytics
 <p align="center">
-  <img src="assets/screenshots/untold_side.png" width="80%">
+  <img width="1200" height="750" alt="image" src="https://github.com/user-attachments/assets/d1e16604-d909-4238-941b-f1320d8bc588" />
 </p>
 
-### 🧪 Know Yourself — Self-Check & Results  
+### 🧪 Know Yourself — Predictive & Prescriptive analytics
 <p align="center">
-  <img src="assets/screenshots/know_yourself.png" width="80%">
+  <img width="1034" height="762" alt="image" src="https://github.com/user-attachments/assets/7ae154ed-a761-4ea7-a3a7-7ea589d63081" />
 </p>
-
-> 📌 *Replace the placeholder paths with your actual screenshot directories.*
 
 ---
 
@@ -129,6 +127,7 @@ Muhammad Roslan bin Abbas
 
 
 This dashboard is developed for educational and academic purposes.
+
 
 
 
