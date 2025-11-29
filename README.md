@@ -1,6 +1,6 @@
 <p align="center">
 </p>
-<h1 align="center">🧠 Campus Care — Student Mental Wellness Dashboard</h1>
+<h1 align="center">🧠 Student Mental Wellness Dashboard</h1>
 <p align="center"><i>A data-driven Streamlit application for awareness, reflection, and personalised wellness insights.</i></p>
 
 <p align="center">
@@ -30,9 +30,8 @@ All powered by **Streamlit**, **Plotly**, **Pandas**, and **custom CSS**.
 ---
 
 ## 🖼️ Project Banner  
-*(Replace this with your own banner if you like)*  
 <p align="center">
-  <img src="https://via.placeholder.com/1200x350/4a90e2/FFFFFF?text=Campus+Care+Dashboard+Banner" width="100%">
+  <img width="1116" height="872" alt="image" src="https://github.com/user-attachments/assets/9c1e9a7c-8012-420c-bf00-5833be690eb7" />
 </p>
 
 ---
@@ -139,4 +138,5 @@ Muhammad Roslan bin Abbas
 
 
 This dashboard is developed for educational and academic purposes.
+
 
